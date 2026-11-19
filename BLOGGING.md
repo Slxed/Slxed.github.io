@@ -46,9 +46,18 @@ Accent color is `--color-primary` and `--color-primary-dark` in `src/styles/glob
 
 The moon button in the header switches light and dark. The choice is saved in the browser. With no saved choice, the site follows the system setting.
 
-## Currently line
+## Analytics
 
-The line under the name on the home page comes from `currently` in `src/site.ts`. Edit that one string when the role changes. It is the only place that sentence is stored.
+The site can count visits with GoatCounter, which does not use cookies, so no cookie banner is needed. Nothing is loaded until a code is set.
+
+1. Sign up at [goatcounter.com](https://www.goatcounter.com/).
+2. Copy the site code (the part before `.goatcounter.com`).
+3. Set `goatcounterCode` in `src/site.ts` to that code.
+4. Push to `main`. The count script is added only when `goatcounterCode` is not empty.
+
+## Latest update
+
+The accent line under the name on the home page comes from `latestUpdate` in `src/site.ts`. Edit that one string when there is something new to note. It is the only place that sentence is stored.
 
 ## School spending map
 

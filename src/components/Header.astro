@@ -1,5 +1,5 @@
 ---
-import { getPublishedPosts, homeHref } from '../lib/posts';
+import { getPublishedPosts, homeHref, publicSrc } from '../lib/posts';
 
 const posts = await getPublishedPosts();
 const showBlog = posts.length > 0;
@@ -11,6 +11,8 @@ const showBlog = posts.length > 0;
     <nav>
       <ul>
         <li><a href={homeHref('#about')}>About</a></li>
+        <li><a href={homeHref('skills')}>Skills</a></li>
+        <li><a href={publicSrc('/William_Day_Resume.pdf')} target="_blank" rel="noopener noreferrer">Resume</a></li>
         <li><a href={homeHref('#experience')}>Experience</a></li>
         <li><a href={homeHref('#projects')}>Projects</a></li>
         {showBlog && (
@@ -18,21 +20,17 @@ const showBlog = posts.length > 0;
         )}
       </ul>
     </nav>
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
-      <i class="fa-solid fa-moon" aria-hidden="true"></i>
-    </button>
+    <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
   </div>
 </header>
 
 <script>
   const button = document.getElementById('theme-toggle');
-  const icon = button?.querySelector('i');
 
   function paint(theme: string) {
     document.documentElement.setAttribute('data-theme', theme);
     const dark = theme === 'dark';
-    if (icon) icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    button?.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    if (button) button.textContent = dark ? 'Light' : 'Dark';
   }
 
   paint(document.documentElement.getAttribute('data-theme') || 'light');

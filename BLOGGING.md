@@ -43,3 +43,7 @@ Project screenshots are optional. Drop a file in `public/projects/` and the card
 `.jpg`, `.jpeg`, and `.webp` work with the same names. The Wisconsin map in `Slxed/wi-school-spending` (`map/wi_spending_vs_graduation.png`) is one you already have.
 
 Accent color is two values at the top of `src/styles/global.css`: `--color-primary` and `--color-primary-dark`. Comment the active line and uncomment deep blue, map teal, or Badger red.
+
+## Currently line
+
+The line under the name on the home page comes from `currently` in `src/site.ts`. Edit that one string when the role changes. It is the only place that sentence is stored.

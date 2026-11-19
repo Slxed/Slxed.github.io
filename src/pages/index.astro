@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { formatPostDate, getPublishedPosts, postPath, publicSrc } from '../lib/posts';
+import { currently } from '../site';
 
 const posts = await getPublishedPosts();
 
@@ -59,6 +60,7 @@ const projects = [
       <p class="subtitle">
         I'm a junior at UW–Madison studying Data Science and Cartography &amp; GIS.
       </p>
+      <p class="currently">{currently}</p>
       <p class="description">
         In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights.
       </p>
@@ -91,7 +93,7 @@ const projects = [
     <div class="about-content">
       <div class="about-text">
         <p>I expect to graduate in May 2028 with a B.S. in Data Science and a B.S. in Cartography &amp; GIS. Coursework: Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Cartography, Intro to GIS, Linear Algebra.</p>
-        <p>I have hands-on experience working with data in both professional and academic settings and finding the reason behind its trends. Most of the work was getting messy spreadsheets to agree, and honestly that's the part I like. In summer 2027 I'll be a Data Analytics Intern at Mercury Marine.</p>
+        <p>I have hands-on experience working with data in both professional and academic settings and finding the reason behind its trends. Most of the work was getting messy spreadsheets to agree, and honestly that's the part I like.</p>
 
         <div class="skills">
           <h3>Skills</h3>
@@ -142,12 +144,12 @@ const projects = [
       <article class="job">
         <h3>The Moth: StorySLAM – Wisconsin Humanities</h3>
         <p class="job-meta">Student Data Intern · Madison, WI · February 2026 – May 2026</p>
-        <p>Cut report preparation time in half by writing Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records. Queried, analyzed, and visualized ticket transaction records and sales data, generating reports on attendance trends and revenue metrics across events with up to 250 attendees; recommendations informed ticket pricing.</p>
+        <p>Cut report preparation time in half by writing Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records.</p>
       </article>
       <article class="job">
         <h3>UW–Madison Division of Information Technology (DoIT)</h3>
         <p class="job-meta">Help Desk Agent · Madison, WI · July 2026 – Present</p>
-        <p>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush. Document troubleshooting steps and coach students and staff on cybersecurity basics like phishing and MFA.</p>
+        <p>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush.</p>
       </article>
       <article class="job">
         <h3>Evansville Community School District</h3>

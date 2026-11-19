@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const description =
+  'Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.';
+---
+
+<Layout title="Wisconsin Public School Spending Analysis" description={description}>
+  <Header />
+  <article class="project-page">
+    <p><a href="/#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> My Projects</a></p>
+    <h1>Wisconsin Public School Spending Analysis</h1>
+    <p>
+      Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.
+      Built a bivariate choropleth map showing that higher spending didn't consistently line up with higher graduation rates: districts averaged $18,865 per student and a 68.8% graduation rate, but Lac du Flambeau spent $39,708 per student and graduated only 57%, while Merton spent $12,624 and graduated 94%.
+      Designed the final layout in ArcGIS Pro and Illustrator using an Albers equal-area projection, with a clear visual hierarchy and callouts for outlier districts to tell the story without lengthy explanation.
+    </p>
+    <p class="project-links">
+      <a class="project-link" href="https://github.com/Slxed/wi-school-spending"><i class="fa-brands fa-github"></i> Source Code</a>
+    </p>
+    <img
+      src="https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png"
+      alt="Map of Wisconsin school districts comparing spending per student and graduation rate"
+    />
+    <div id="district-map" class="district-map" role="region" aria-label="Wisconsin school districts" hidden></div>
+    <p id="map-note" class="map-note"></p>
+    <div id="bivariate-legend" class="bivariate-legend" hidden></div>
+  </article>
+  <Footer />
+</Layout>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+<script is:inline>
+  const note = document.getElementById('map-note');
+  const mapEl = document.getElementById('district-map');
+  const legendEl = document.getElementById('bivariate-legend');
+  const missing =
+    'The interactive map loads public/data/wi-districts.geojson when that file is present. The school-spending repo has the finished map image, not district rows or boundaries, so nothing is drawn yet.';
+
+  function terciles(values) {
+    const sorted = values.filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+    if (sorted.length < 3) return null;
+    const at = (p) => sorted[Math.min(sorted.length - 1, Math.floor(p * (sorted.length - 1)))];
+    return [at(1 / 3), at(2 / 3)];
+  }
+
+  function bin(value, cuts) {
+    if (value <= cuts[0]) return 0;
+    if (value <= cuts[1]) return 1;
+    return 2;
+  }
+
+  const colors = [
+    ['#e7f2f0', '#b7ddd7', '#6fbfb6'],
+    ['#d5e4df', '#8fbfb6', '#2f8f86'],
+    ['#c3d5ce', '#5aa39a', '#0F5C56'],
+  ];
+
+  function draw(collection) {
+    const features = collection.features || [];
+    const spend = features.map((f) => Number(f.properties && f.properties.spend));
+    const grad = features.map((f) => Number(f.properties && f.properties.grad));
+    const spendCuts = terciles(spend);
+    const gradCuts = terciles(grad);
+    if (!spendCuts || !gradCuts) {
+      note.textContent = missing;
+      return;
+    }
+
+    mapEl.hidden = false;
+    const map = L.map(mapEl, { scrollWheelZoom: false });
+    const layer = L.geoJSON(collection, {
+      style(feature) {
+        const props = feature.properties || {};
+        const x = bin(Number(props.spend), spendCuts);
+        const y = bin(Number(props.grad), gradCuts);
+        return {
+          color: '#243330',
+          weight: 0.6,
+          fillColor: colors[y][x],
+          fillOpacity: 0.92,
+        };
+      },
+      onEachFeature(feature, leafletLayer) {
+        const props = feature.properties || {};
+        const name = props.name || 'District';
+        const dollars = Number(props.spend);
+        const rate = Number(props.grad);
+        const money = Number.isFinite(dollars) ? '$' + dollars.toLocaleString('en-US') : 'n/a';
+        const gradText = Number.isFinite(rate) ? rate + '%' : 'n/a';
+        leafletLayer.bindTooltip(
+          '<strong>' + name + '</strong><br>' + money + ' per student<br>' + gradText + ' graduation rate',
+          { sticky: true },
+        );
+      },
+    }).addTo(map);
+    map.fitBounds(layer.getBounds(), { padding: [12, 12] });
+    note.hidden = true;
+
+    legendEl.hidden = false;
+    legendEl.innerHTML =
+      '<p class="legend-label">Spending per student, low to high, left to right. Graduation rate, low to high, bottom to top.</p>';
+    const grid = document.createElement('div');
+    grid.className = 'legend-grid';
+    for (let y = 2; y >= 0; y -= 1) {
+      for (let x = 0; x < 3; x += 1) {
+        const swatch = document.createElement('span');
+        swatch.style.background = colors[y][x];
+        grid.appendChild(swatch);
+      }
+    }
+    legendEl.appendChild(grid);
+  }
+
+  fetch('/data/wi-districts.geojson')
+    .then((response) => {
+      if (!response.ok) throw new Error('missing');
+      return response.json();
+    })
+    .then((data) => {
+      if (!data || !Array.isArray(data.features) || data.features.length === 0) throw new Error('empty');
+      draw(data);
+    })
+    .catch(() => {
+      note.textContent = missing;
+    });
+</script>

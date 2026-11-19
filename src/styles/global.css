@@ -1,13 +1,17 @@
 /* CSS Variables for consistent theming */
-:root {
-  /* Accent. White text on --color-primary clears 4.5:1.
-     To swap, comment the active line and uncomment one alternative.
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  /* Accent. Text on a primary fill uses --color-on-primary.
+     To swap, comment the active line and uncomment one alternative,
+     then do the same in the dark block below.
      Map teal:   #0F5C56 / #0A3E3A
      Deep blue:  #1B4F72 / #123652
      Badger red: #8C1D2C / #5E121C */
   /* --color-primary: #1B4F72; --color-primary-dark: #123652; */ /* deep blue */
   --color-primary: #0F5C56; --color-primary-dark: #0A3E3A; /* map teal */
   /* --color-primary: #8C1D2C; --color-primary-dark: #5E121C; */ /* badger red */
+  --color-on-primary: #ffffff;
 
   --color-secondary: #faf9f5;
   --color-text: #333333;
@@ -36,6 +40,25 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  /* Dark accent. Same swap rule as the light block.
+     Map teal:   #8fd9d2 / #b7ebe6
+     Deep blue:  #9ec3e8 / #c5daf3
+     Badger red: #f0a3ae / #f6c5cb */
+  /* --color-primary: #9ec3e8; --color-primary-dark: #c5daf3; */ /* deep blue */
+  --color-primary: #8fd9d2; --color-primary-dark: #b7ebe6; /* map teal */
+  /* --color-primary: #f0a3ae; --color-primary-dark: #f6c5cb; */ /* badger red */
+  --color-on-primary: #10211f;
+
+  --color-secondary: #1c2624;
+  --color-text: #f3f0ea;
+  --color-text-light: #c8c2b8;
+  --color-background: #141a19;
+  --color-card: #1a2220;
+  --color-border: #31403c;
 }
 
 /* Reset and Base Styles */
@@ -136,7 +159,27 @@ header .container {
 
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-md);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-background);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 nav a {
@@ -182,7 +225,7 @@ nav a {
   display: inline-block;
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
   border-radius: var(--border-radius-md);
   font-weight: 600;
   transition: background-color var(--transition-fast);
@@ -190,7 +233,7 @@ nav a {
 
 .cta-button:hover {
   background-color: var(--color-primary-dark);
-  color: white;
+  color: var(--color-on-primary);
 }
 
 .cta-button.secondary {
@@ -201,7 +244,7 @@ nav a {
 
 .cta-button.secondary:hover {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
 }
 
 .hero-image {
@@ -289,7 +332,7 @@ section {
 
 .skills li {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   font-size: 0.9rem;
@@ -305,7 +348,30 @@ section {
   flex-direction: column;
   gap: var(--spacing-lg);
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 0 0.35rem;
+  border-left: 2px solid var(--color-border);
+  padding-left: var(--spacing-md);
+}
+
+.currently {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.job {
+  position: relative;
+}
+
+.job::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--spacing-md) - 6px);
+  top: 0.45rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 .job h3 {
@@ -451,7 +517,7 @@ section {
   width: 40px;
   height: 40px;
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
   border-radius: 50%;
   font-size: 1.2rem;
   transition: background-color var(--transition-fast),
@@ -460,7 +526,7 @@ section {
 
 .social-link:hover {
   background-color: var(--color-primary-dark);
-  color: white;
+  color: var(--color-on-primary);
   transform: scale(1.1);
 }
 
@@ -641,6 +707,65 @@ footer i {
   border-radius: var(--border-radius-md);
 }
 
+.project-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.project-page h1 {
+  font-size: 2.4rem;
+}
+
+.project-page .back-link {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.district-map {
+  height: 560px;
+  margin-top: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-secondary);
+}
+
+.map-note {
+  color: var(--color-text-light);
+  margin-top: var(--spacing-sm);
+}
+
+.bivariate-legend {
+  margin-top: var(--spacing-md);
+}
+
+.legend-label {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  width: max-content;
+  border: 1px solid var(--color-border);
+}
+
+.legend-grid span {
+  width: 28px;
+  height: 28px;
+}
+
+.chart-frame {
+  width: 100%;
+  height: 80vh;
+  min-height: 640px;
+  margin-top: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background);
+}
+
 .back-link {
   display: inline-block;
   margin-top: var(--spacing-lg);
@@ -658,7 +783,7 @@ footer i {
   padding: 0.1rem 0.4rem;
   border-radius: var(--border-radius-sm);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;

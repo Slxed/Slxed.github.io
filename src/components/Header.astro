@@ -18,5 +18,28 @@ const showBlog = posts.length > 0;
         )}
       </ul>
     </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+      <i class="fa-solid fa-moon" aria-hidden="true"></i>
+    </button>
   </div>
 </header>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+  const icon = button?.querySelector('i');
+
+  function paint(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const dark = theme === 'dark';
+    if (icon) icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    button?.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  paint(document.documentElement.getAttribute('data-theme') || 'light');
+
+  button?.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    paint(next);
+  });
+</script>

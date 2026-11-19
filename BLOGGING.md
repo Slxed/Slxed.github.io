@@ -42,4 +42,49 @@ Project screenshots are optional. Drop a file in `public/projects/` and the card
 
 `.jpg`, `.jpeg`, and `.webp` work with the same names. The Wisconsin map in `Slxed/wi-school-spending` (`map/wi_spending_vs_graduation.png`) is one you already have.
 
-Accent color is two values at the top of `src/styles/global.css`: `--color-primary` and `--color-primary-dark`. Comment the active line and uncomment deep blue, map teal, or Badger red.
+Accent color is `--color-primary` and `--color-primary-dark` in `src/styles/global.css`. There is a light block and a dark block. Comment the active line and uncomment deep blue, map teal, or Badger red in both blocks, or the night colors will not match.
+
+The moon button in the header switches light and dark. The choice is saved in the browser. With no saved choice, the site follows the system setting.
+
+## Currently line
+
+The line under the name on the home page comes from `currently` in `src/site.ts`. Edit that one string when the role changes. It is the only place that sentence is stored.
+
+## School spending map
+
+`/projects/wi-school-spending` draws a bivariate choropleth when `public/data/wi-districts.geojson` exists. The GitHub repo has the finished map image, not the district table or the boundaries, so the page does not invent those rows.
+
+The file must be GeoJSON in longitude/latitude (EPSG:4326). Each feature needs:
+
+- `name`: district name
+- `spend`: dollars per student, a number
+- `grad`: graduation rate, a number (94 means 94%)
+- a `Polygon` or `MultiPolygon` geometry
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Merton Community", "spend": 12624, "grad": 94 },
+      "geometry": { "type": "Polygon", "coordinates": [] }
+    }
+  ]
+}
+```
+
+Hover text is the district name, dollars per student, and graduation rate. The color grid is spending left to right and graduation rate bottom to top, split into three groups from the file itself. Official Wisconsin school district boundaries (Wisconsin DPI or LTSB open data) can be joined to a table that already has these fields. Do not fill in spending or graduation rates that are not in that table. The resume figures (421 districts, 2023–24, $18,865 and 68.8%, Lac du Flambeau $39,708 and 57%, Merton $12,624 and 94%) stay in the text even before the file is added.
+
+## Project drafts
+
+Two drafts are already in `src/content/blog/`:
+
+- `how-i-made-wi-school-spending.md`
+- `how-i-made-crypto-diversification.md`
+
+Both have `draft: true`, so a production build leaves them off the site. `npm run dev` shows them. Replace the comment, write the post, set `draft` to `false`, and push.
+
+## Crypto report
+
+`/projects/crypto-diversification` embeds the existing report at https://slxed.github.io/crypto-diversification/ in a frame. That page is the rendered `docs/index.html` from github.com/Slxed/crypto-diversification, including the plotly charts. The charts are not copied into this repo and are not redrawn here. If that URL stops resolving, the Live Demo link on the home card points at the same place.

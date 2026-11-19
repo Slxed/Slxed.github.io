@@ -8,22 +8,22 @@
 @import "@fontsource/ibm-plex-sans/latin-500.css";
 @import "@fontsource/ibm-plex-mono/latin-400.css";
 
-/* Directions. Applied: survey (Source Serif 4 + IBM Plex Sans, burnt orange).
+/* Directions. Applied: plate (IBM Plex Serif + IBM Plex Sans, muted coral).
    field: Fraunces + Source Sans 3, ochre #7A4E0D / #E2B15A
-   plate: IBM Plex Serif + IBM Plex Sans, muted coral #8E3D3A / #F0A8A0
-   Preview another direction with ?design=field or ?design=plate.
+   survey: Source Serif 4 + IBM Plex Sans, burnt orange #9A4318 / #F0A06A
+   Preview another direction with ?design=field or ?design=survey.
    See DESIGN.md. */
 :root,
 [data-theme="light"] {
   color-scheme: light;
-  --font-display: "Source Serif 4", Georgia, serif;
+  --font-display: "IBM Plex Serif", Georgia, serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --color-primary: #0f5c56;
   --color-primary-dark: #0a3e3a;
   --color-on-primary: #ffffff;
-  --color-accent-2: #9a4318;
+  --color-accent-2: #8e3d3a;
 
   --color-secondary: #efeae1;
   --color-text: #1c1915;
@@ -45,7 +45,7 @@
   --color-primary: #8fd9d2;
   --color-primary-dark: #b7ebe6;
   --color-on-primary: #10211f;
-  --color-accent-2: #f0a06a;
+  --color-accent-2: #f0a8a0;
 
   --color-secondary: #1c2422;
   --color-text: #f3f0ea;
@@ -53,6 +53,16 @@
   --color-background: #141816;
   --color-card: #1a201e;
   --color-border: #31403c;
+}
+
+[data-design="survey"] {
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --color-accent-2: #9a4318;
+}
+
+[data-theme="dark"][data-design="survey"] {
+  --color-accent-2: #f0a06a;
 }
 
 [data-design="field"] {
@@ -65,15 +75,6 @@
   --color-accent-2: #e2b15a;
 }
 
-[data-design="plate"] {
-  --font-display: "IBM Plex Serif", Georgia, serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --color-accent-2: #8e3d3a;
-}
-
-[data-theme="dark"][data-design="plate"] {
-  --color-accent-2: #f0a8a0;
-}
 
 * {
   margin: 0;
@@ -119,6 +120,7 @@ article {
 
 a {
   color: var(--color-primary);
+  text-decoration-color: var(--color-accent-2);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
@@ -241,8 +243,12 @@ section {
 .section-header {
   text-align: left;
   margin-bottom: 1.25rem;
-  padding-top: 0.35rem;
-  border-top: 1px solid var(--color-text);
+  padding-top: 0.55rem;
+  border-top: 3px solid var(--color-primary);
+}
+
+.section-header h2 {
+  color: var(--color-primary);
 }
 
 .section-header p {
@@ -331,6 +337,9 @@ section {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
   margin-top: 1.75rem;
+  padding: 1rem 1.1rem 1.15rem;
+  background: color-mix(in srgb, var(--color-primary) 9%, var(--color-background));
+  border-top: 3px solid var(--color-accent-2);
 }
 
 .skills h3 {
@@ -354,9 +363,38 @@ section {
 }
 
 .skills li {
-  padding: 0.28rem 0;
-  border-top: 1px solid var(--color-border);
+  margin-top: 0.35rem;
+  padding: 0.28rem 0.45rem;
+  background: color-mix(in srgb, var(--color-accent-2) 14%, var(--color-background));
+  border-left: 3px solid var(--color-primary);
   font-size: 0.95rem;
+}
+
+.coursework {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.coursework div {
+  display: grid;
+  grid-template-columns: 14.5rem minmax(0, 1fr);
+  gap: 0.75rem 1.25rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.coursework dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+
+.coursework dd {
+  margin: 0;
 }
 
 .jobs {
@@ -417,8 +455,9 @@ section {
   grid-template-columns: 148px minmax(0, 1fr);
   gap: 1.25rem;
   align-items: start;
-  padding: 1.1rem 0;
+  padding: 1.1rem 0 1.1rem 0.75rem;
   border-top: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent-2);
 }
 
 .project-row:not(:has(.project-thumb)) {
@@ -525,6 +564,19 @@ footer .container {
 footer p {
   margin: 0;
   font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0;
+}
+
+.footer-links a + a::before {
+  content: "·";
+  color: var(--color-text-light);
+  margin-right: 0.9rem;
 }
 
 footer i {
@@ -637,7 +689,8 @@ footer i {
   .hero .container,
   .skills,
   .job,
-  .project-row {
+  .project-row,
+  .coursework div {
     grid-template-columns: 1fr;
   }
 

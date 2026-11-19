@@ -49,3 +49,29 @@ The moon button in the header switches light and dark. The choice is saved in th
 ## Currently line
 
 The line under the name on the home page comes from `currently` in `src/site.ts`. Edit that one string when the role changes. It is the only place that sentence is stored.
+
+## School spending map
+
+`/projects/wi-school-spending` draws a bivariate choropleth when `public/data/wi-districts.geojson` exists. The GitHub repo has the finished map image, not the district table or the boundaries, so the page does not invent those rows.
+
+The file must be GeoJSON in longitude/latitude (EPSG:4326). Each feature needs:
+
+- `name`: district name
+- `spend`: dollars per student, a number
+- `grad`: graduation rate, a number (94 means 94%)
+- a `Polygon` or `MultiPolygon` geometry
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Merton Community", "spend": 12624, "grad": 94 },
+      "geometry": { "type": "Polygon", "coordinates": [] }
+    }
+  ]
+}
+```
+
+Hover text is the district name, dollars per student, and graduation rate. The color grid is spending left to right and graduation rate bottom to top, split into three groups from the file itself. Official Wisconsin school district boundaries (Wisconsin DPI or LTSB open data) can be joined to a table that already has these fields. Do not fill in spending or graduation rates that are not in that table. The resume figures (421 districts, 2023–24, $18,865 and 68.8%, Lac du Flambeau $39,708 and 57%, Merton $12,624 and 94%) stay in the text even before the file is added.

@@ -707,6 +707,65 @@ footer i {
   border-radius: var(--border-radius-md);
 }
 
+.project-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.project-page h1 {
+  font-size: 2.4rem;
+}
+
+.project-page .back-link {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.district-map {
+  height: 560px;
+  margin-top: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-secondary);
+}
+
+.map-note {
+  color: var(--color-text-light);
+  margin-top: var(--spacing-sm);
+}
+
+.bivariate-legend {
+  margin-top: var(--spacing-md);
+}
+
+.legend-label {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  width: max-content;
+  border: 1px solid var(--color-border);
+}
+
+.legend-grid span {
+  width: 28px;
+  height: 28px;
+}
+
+.chart-frame {
+  width: 100%;
+  height: 80vh;
+  min-height: 640px;
+  margin-top: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background);
+}
+
 .back-link {
   display: inline-block;
   margin-top: var(--spacing-lg);

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { homeHref } from '../../lib/posts';
 
 const description =
   'Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.';
@@ -10,7 +11,7 @@ const description =
 <Layout title="Wisconsin Public School Spending Analysis" description={description}>
   <Header />
   <article class="project-page">
-    <p><a href="/#projects" class="back-link">My Projects</a></p>
+    <p><a href={homeHref('experience#projects')} class="back-link">Projects</a></p>
     <h1>Wisconsin Public School Spending Analysis</h1>
     <p>
       Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.

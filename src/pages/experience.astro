@@ -1,0 +1,100 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { homeHref } from '../lib/posts';
+
+function publicFile(urlPath: string): string | undefined {
+  const rel = urlPath.replace(/^\//, '');
+  return existsSync(join(process.cwd(), 'public', rel)) ? `/${rel}` : undefined;
+}
+
+const mapImage =
+  publicFile('/projects/wi-school-spending.png') ??
+  publicFile('/projects/wi-school-spending.jpg') ??
+  publicFile('/projects/wi-school-spending.webp') ??
+  'https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png';
+---
+
+<Layout title="Experience">
+  <Header />
+  <article class="skills-page">
+    <div class="container">
+      <h1>Experience</h1>
+
+      <h2 class="subhead">Upcoming</h2>
+      <article id="mercury" class="job">
+        <h3>Mercury Marine</h3>
+        <p class="job-meta">Data Analytics Intern · Summer 2027</p>
+      </article>
+
+      <h2 class="subhead">Work</h2>
+      <article id="doit" class="job">
+        <h3>UW–Madison Division of Information Technology (DoIT)</h3>
+        <p class="job-meta">Help Desk Agent · Madison, WI · July 2026 – Present</p>
+        <p>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush.</p>
+        <p>Document troubleshooting steps and coach students and staff on cybersecurity basics like phishing and MFA.</p>
+        <p class="entry-tools">WiscIT</p>
+      </article>
+      <article id="moth" class="job">
+        <h3>The Moth: StorySLAM – Wisconsin Humanities</h3>
+        <p class="job-meta">Student Data Intern · Madison, WI · February 2026 – May 2026</p>
+        <p>R (tidyverse, ggplot2) for a first cleaning and trend pass, then Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records.</p>
+        <p>Queried, analyzed, and visualized ticket transaction records and sales data, generating reports on attendance trends and revenue metrics across events with up to 250 attendees; recommendations informed ticket pricing.</p>
+        <p class="entry-tools">R (tidyverse, ggplot2), Python (pandas)</p>
+      </article>
+      <article id="evansville" class="job">
+        <h3>Evansville Community School District</h3>
+        <p class="job-meta">IT Apprentice · Evansville, WI · May 2023 – August 2024</p>
+        <p>Resolved 400+ hardware and software tickets for 100+ staff; maintained spreadsheets tracking 1,000+ device repairs.</p>
+        <p class="entry-tools">Excel</p>
+      </article>
+
+      <h2 id="projects" class="subhead">Projects</h2>
+      <div class="project-index">
+        <article id="schools" class="project-row">
+          <a class="project-thumb" href={homeHref('projects/wi-school-spending')} tabindex="-1" aria-hidden="true">
+            <img src={mapImage} alt="" />
+          </a>
+          <div class="project-info">
+            <h3><a href={homeHref('projects/wi-school-spending')}>Wisconsin Public School Spending Analysis</a></h3>
+            <p>Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.</p>
+            <p>Built a bivariate choropleth map showing that higher spending didn't consistently line up with higher graduation rates: districts averaged $18,865 per student and a 68.8% graduation rate, but Lac du Flambeau spent $39,708 per student and graduated only 57%, while Merton spent $12,624 and graduated 94%.</p>
+            <p>Designed the final layout in ArcGIS Pro and Illustrator using an Albers equal-area projection, with a clear visual hierarchy and callouts for outlier districts to tell the story without lengthy explanation.</p>
+            <p class="entry-tools">Python, ArcGIS, SQL, Adobe Illustrator, Excel</p>
+            <p class="project-links">
+              <a href={homeHref('projects/wi-school-spending')}>Project page</a>
+              <a href="https://github.com/Slxed/wi-school-spending">Source Code</a>
+            </p>
+          </div>
+        </article>
+        <article id="crypto" class="project-row">
+          <div class="project-info">
+            <h3><a href={homeHref('projects/crypto-diversification')}>Crypto Diversification Analysis</a></h3>
+            <p>Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&amp;P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin's correlation with S&amp;P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p &lt; 0.001).</p>
+            <p>Showed the correlation was even higher during market stress such as COVID, the FTX collapse, and the 2022 rate hikes, when a diversifier is needed most.</p>
+            <p>Built 4 interactive plotly charts (a two-panel time series, a heatmap, grouped bars, and a risk vs. correlation scatter plot) to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.</p>
+            <p class="entry-tools">R (tidyverse, tidyquant, plotly), R Markdown</p>
+            <p class="project-links">
+              <a href="https://slxed.github.io/crypto-diversification/">Live Demo</a>
+              <a href="https://github.com/Slxed/crypto-diversification">Source Code</a>
+            </p>
+          </div>
+        </article>
+        <article id="cleaner" class="project-row">
+          <div class="project-info">
+            <h3>AI-Assisted Querying of Cleaned Data</h3>
+            <p>A Python pipeline that cleans a particular NY dataset. Next step: send the cleaning log to an LLM for a data quality report, and turn plain-English questions into queries.</p>
+            <p class="entry-tools">Python, pandas, NumPy, Matplotlib</p>
+            <p class="project-links">
+              <a href="https://github.com/Slxed/ai-data-cleaner-WIP">Source Code</a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </article>
+  <Footer />
+</Layout>

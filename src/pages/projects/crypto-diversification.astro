@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const description =
+  "Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin's correlation with S&P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p < 0.001).";
+---
+
+<Layout title="Crypto Diversification Analysis" description={description}>
+  <Header />
+  <article class="project-page">
+    <p><a href="/#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> My Projects</a></p>
+    <h1>Crypto Diversification Analysis</h1>
+    <p>
+      Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin's correlation with S&P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p &lt; 0.001).
+      Showed the correlation was even higher during market stress such as COVID, the FTX collapse, and the 2022 rate hikes, when a diversifier is needed most.
+      Built 4 interactive plotly charts (a two-panel time series, a heatmap, grouped bars, and a risk vs. correlation scatter plot) to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.
+    </p>
+    <p class="project-links">
+      <a class="project-link" href="https://slxed.github.io/crypto-diversification/"><i class="fa-solid fa-link"></i> Live Demo</a>
+      <a class="project-link" href="https://github.com/Slxed/crypto-diversification"><i class="fa-brands fa-github"></i> Source Code</a>
+    </p>
+    <p>The live report is below.</p>
+    <iframe
+      class="chart-frame"
+      title="Crypto Diversification Analysis"
+      src="https://slxed.github.io/crypto-diversification/"
+      loading="lazy"
+    ></iframe>
+  </article>
+  <Footer />
+</Layout>

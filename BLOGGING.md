@@ -30,7 +30,7 @@ Posts are listed newest first. To take a post back down, set `draft: true` and p
 
 ## Still to add yourself
 
-The Resume button points at `/William_Day_Resume.pdf`. The resume file on hand includes a phone number, so it is not in this repo. Export a PDF with the phone number and any street address removed, and save it as `public/William_Day_Resume.pdf`. City and email can stay off the file too if you would rather not publish them. Do not commit the current PDF.
+The Resume button points at `/William_Day_Resume.pdf`. The latest resume file includes a phone number and Evansville, WI 53536, so it is not in this repo. Save a public copy without the phone number as `public/William_Day_Resume.pdf`. Leave the home location off that file too if you do not want it public. Do not commit the current PDF.
 
 Headshot: save a photo as `public/headshot.jpg` (`.png` or `.webp` also work). Until that file exists, the hero shows a plain “WD” circle.
 

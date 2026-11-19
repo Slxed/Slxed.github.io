@@ -28,17 +28,17 @@ const headshot =
 
 const projects = [
   {
+    title: 'Wisconsin Public School Spending Analysis',
+    image: projectShot('wi-school-spending'),
+    source: 'https://github.com/Slxed/wi-school-spending',
+    body: 'Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro. Built a bivariate choropleth map showing that higher spending didn\'t consistently line up with higher graduation rates: districts averaged $18,865 per student and a 68.8% graduation rate, but Lac du Flambeau spent $39,708 per student and graduated only 57%, while Merton spent $12,624 and graduated 94%. Designed the final layout in ArcGIS Pro and Illustrator using an Albers equal-area projection, with a clear visual hierarchy and callouts for outlier districts to tell the story without lengthy explanation.',
+  },
+  {
     title: 'Crypto Diversification Analysis',
     image: projectShot('crypto-diversification'),
     demo: 'https://slxed.github.io/crypto-diversification/',
     source: 'https://github.com/Slxed/crypto-diversification',
-    body: 'In a team project for STAT 436 (Statistical Data Visualization), we analyzed trends in the financial market pertaining to traditional and cryptocurrency investments. Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R (tidyverse, tidyquant, plotly) with rolling correlations; found Bitcoin\'s correlation with S&P 500 rose from near zero before 2020 to about 0.39 after. Built 4 interactive plotly charts to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.',
-  },
-  {
-    title: 'Wisconsin Public School Spending',
-    image: projectShot('wi-school-spending'),
-    source: 'https://github.com/Slxed/wi-school-spending',
-    body: 'I looked at how much Wisconsin public school districts spend per student. I utilized SQL queries, Microsoft Excel, and Python scripts to fully clean, sort, and merge multiple datasets of 421 districts from the Department of Public Instruction\'s 2023–24 data. Then I joined the data to district boundaries in ArcGIS Pro and built a bivariate choropleth map of spending per student against graduation rate.',
+    body: 'Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin\'s correlation with S&P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p < 0.001). Showed the correlation was even higher during market stress such as COVID, the FTX collapse, and the 2022 rate hikes, when a diversifier is needed most. Built 4 interactive plotly charts (a two-panel time series, a heatmap, grouped bars, and a risk vs. correlation scatter plot) to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.',
   },
   {
     title: 'AI-Assisted Querying of Cleaned Data',
@@ -103,7 +103,6 @@ const projects = [
               <li>SQL</li>
               <li>Excel</li>
               <li>Jupyter</li>
-              <li>Data cleaning</li>
             </ul>
           </div>
           <div class="skill-group">
@@ -130,6 +129,31 @@ const projects = [
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="experience">
+  <div class="container">
+    <div class="section-header">
+      <h2>Experience</h2>
+    </div>
+    <div class="jobs">
+      <article class="job">
+        <h3>The Moth: StorySLAM – Wisconsin Humanities</h3>
+        <p class="job-meta">Student Data Intern · Madison, WI · February 2026 – May 2026</p>
+        <p>Cut report preparation time in half by writing Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records. Queried, analyzed, and visualized ticket transaction records and sales data, generating reports on attendance trends and revenue metrics across events with up to 250 attendees; recommendations informed ticket pricing.</p>
+      </article>
+      <article class="job">
+        <h3>UW–Madison Division of Information Technology (DoIT)</h3>
+        <p class="job-meta">Help Desk Agent · Madison, WI · July 2026 – Present</p>
+        <p>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush. Document troubleshooting steps and coach students and staff on cybersecurity basics like phishing and MFA.</p>
+      </article>
+      <article class="job">
+        <h3>Evansville Community School District</h3>
+        <p class="job-meta">IT Apprentice · Evansville, WI · May 2023 – August 2024</p>
+        <p>Resolved 400+ hardware and software tickets for 100+ staff; maintained spreadsheets tracking 1,000+ device repairs.</p>
+      </article>
     </div>
   </div>
 </section>

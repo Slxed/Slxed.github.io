@@ -663,6 +663,20 @@ footer i {
   border: 1px solid var(--color-border);
 }
 
+.project-figure {
+  margin: 1rem 0 0;
+}
+
+.project-figure img {
+  margin: 0;
+}
+
+.project-figure figcaption {
+  margin-top: 0.4rem;
+  color: var(--color-text-light);
+  font-size: 0.92rem;
+}
+
 .district-map {
   height: 560px;
   margin-top: 1rem;
@@ -670,7 +684,6 @@ footer i {
   background: var(--color-secondary);
 }
 
-.map-note,
 .legend-label {
   color: var(--color-text-light);
   font-size: 0.92rem;

@@ -1,11 +1,24 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { homeHref } from '../../lib/posts';
 
+function publicFile(urlPath: string): string | undefined {
+  const rel = urlPath.replace(/^\//, '');
+  return existsSync(join(process.cwd(), 'public', rel)) ? `/${rel}` : undefined;
+}
+
 const description =
   'Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro.';
+
+const mapImage =
+  publicFile('/projects/wi-school-spending.png') ??
+  publicFile('/projects/wi-school-spending.jpg') ??
+  publicFile('/projects/wi-school-spending.webp') ??
+  'https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png';
 ---
 
 <Layout title="Wisconsin Public School Spending Analysis" description={description}>
@@ -21,12 +34,14 @@ const description =
     <p class="project-links">
       <a class="project-link" href="https://github.com/Slxed/wi-school-spending">Source Code</a>
     </p>
-    <img
-      src="https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png"
-      alt="Map of Wisconsin school districts comparing spending per student and graduation rate"
-    />
+    <figure class="project-figure">
+      <img
+        src={mapImage}
+        alt="Map of Wisconsin school districts comparing spending per student and graduation rate"
+      />
+      <figcaption>2023–24 spending and graduation for 421 Wisconsin districts, mapped in ArcGIS Pro.</figcaption>
+    </figure>
     <div id="district-map" class="district-map" role="region" aria-label="Wisconsin school districts" hidden></div>
-    <p id="map-note" class="map-note"></p>
     <div id="bivariate-legend" class="bivariate-legend" hidden></div>
   </article>
   <Footer />
@@ -45,11 +60,8 @@ const description =
   crossorigin=""
 ></script>
 <script is:inline>
-  const note = document.getElementById('map-note');
   const mapEl = document.getElementById('district-map');
   const legendEl = document.getElementById('bivariate-legend');
-  const missing =
-    'The interactive map loads public/data/wi-districts.geojson when that file is present. The school-spending repo has the finished map image, not district rows or boundaries, so nothing is drawn yet.';
 
   function terciles(values) {
     const sorted = values.filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
@@ -76,10 +88,7 @@ const description =
     const grad = features.map((f) => Number(f.properties && f.properties.grad));
     const spendCuts = terciles(spend);
     const gradCuts = terciles(grad);
-    if (!spendCuts || !gradCuts) {
-      note.textContent = missing;
-      return;
-    }
+    if (!spendCuts || !gradCuts) return;
 
     mapEl.hidden = false;
     const map = L.map(mapEl, { scrollWheelZoom: false });
@@ -109,7 +118,6 @@ const description =
       },
     }).addTo(map);
     map.fitBounds(layer.getBounds(), { padding: [12, 12] });
-    note.hidden = true;
 
     legendEl.hidden = false;
     legendEl.innerHTML =
@@ -135,7 +143,5 @@ const description =
       if (!data || !Array.isArray(data.features) || data.features.length === 0) throw new Error('empty');
       draw(data);
     })
-    .catch(() => {
-      note.textContent = missing;
-    });
+    .catch(() => {});
 </script>

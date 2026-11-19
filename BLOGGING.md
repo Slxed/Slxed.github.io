@@ -61,7 +61,7 @@ The accent line under the name on the home page comes from `latestUpdate` in `sr
 
 ## School spending map
 
-`/projects/wi-school-spending` draws a bivariate choropleth when `public/data/wi-districts.geojson` exists. The GitHub repo has the finished map image, not the district table or the boundaries, so the page does not invent those rows.
+`/projects/wi-school-spending` shows the finished map image from the school-spending repo. The interactive choropleth is drawn only when `public/data/wi-districts.geojson` exists. Until that file is there, the interactive map stays hidden and the page shows no note about it. The GitHub repo has the finished map image, not the district table or the boundaries, so the page does not invent those rows.
 
 The file must be GeoJSON in longitude/latitude (EPSG:4326). Each feature needs:
 

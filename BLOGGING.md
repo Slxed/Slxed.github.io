@@ -28,12 +28,18 @@ A post goes live at `https://slxed.github.io/blog/<filename>` (the filename with
 
 Posts are listed newest first. To take a post back down, set `draft: true` and push, or delete the file and push.
 
-## Still to fill in on the site
+## Still to add yourself
 
-These placeholders are still in `src/pages/index.astro`. They are separate from the blog:
+The Resume button points at `/William_Day_Resume.pdf`. The resume file on hand includes a phone number, so it is not in this repo. Export a PDF with the phone number and any street address removed, and save it as `public/William_Day_Resume.pdf`. City and email can stay off the file too if you would rather not publish them. Do not commit the current PDF.
 
-- About section: `Info Paragraph 1` and `Info Paragraph 2`
-- Each project card: `Brief description of the project, technologies used, and your role in it.`
-- Each project's Live Demo and Source Code links still point at `#` (Crypto Diversification Analysis, Wisconsin Public School Spending, and AI-Assisted Querying of Cleaned Data)
-- The GitHub, LinkedIn, Twitter, and Instagram icons in the hero still point at `#`
-- The headshot and the three project images are still the placeholder icons
+Headshot: save a photo as `public/headshot.jpg` (`.png` or `.webp` also work). Until that file exists, the hero shows a plain “WD” circle.
+
+Project screenshots are optional. Drop a file in `public/projects/` and the card picks it up. Until then the card shows a plain color panel.
+
+- `public/projects/crypto-diversification.png`
+- `public/projects/wi-school-spending.png`
+- `public/projects/ai-data-cleaner.png`
+
+`.jpg`, `.jpeg`, and `.webp` work with the same names. The Wisconsin map in `Slxed/wi-school-spending` (`map/wi_spending_vs_graduation.png`) is one you already have.
+
+Accent color is two values at the top of `src/styles/global.css`: `--color-primary` and `--color-primary-dark`. Comment the active line and uncomment deep blue, map teal, or Badger red.

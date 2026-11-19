@@ -1,7 +1,14 @@
 /* CSS Variables for consistent theming */
 :root {
-  --color-primary: #a78875;
-  --color-primary-dark: #745e51;
+  /* Accent. White text on --color-primary clears 4.5:1.
+     To swap, comment the active line and uncomment one alternative.
+     Map teal:   #0F5C56 / #0A3E3A
+     Deep blue:  #1B4F72 / #123652
+     Badger red: #8C1D2C / #5E121C */
+  /* --color-primary: #1B4F72; --color-primary-dark: #123652; */ /* deep blue */
+  --color-primary: #0F5C56; --color-primary-dark: #0A3E3A; /* map teal */
+  /* --color-primary: #8C1D2C; --color-primary-dark: #5E121C; */ /* badger red */
+
   --color-secondary: #faf9f5;
   --color-text: #333333;
   --color-text-light: #666666;
@@ -124,6 +131,7 @@ header .container {
   font-family: var(--font-secondary);
   font-size: 1.5rem;
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 nav ul {
@@ -164,6 +172,8 @@ nav a {
 
 .cta-container {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
 }
@@ -208,8 +218,18 @@ nav a {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem;
+  overflow: hidden;
+  font-family: var(--font-secondary);
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--color-primary);
+}
+
+.headshot-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Section Styles */
@@ -286,15 +306,18 @@ section {
   overflow: hidden;
 }
 
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .image-placeholder {
   width: 100%;
   height: 100%;
-  background-color: var(--color-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3rem;
-  color: white;
+  background:
+    linear-gradient(165deg, var(--color-secondary) 0%, color-mix(in srgb, var(--color-primary) 28%, white) 100%);
 }
 
 .project-info {
@@ -420,6 +443,7 @@ footer i {
 
   .cta-container {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .contact-content {
@@ -434,6 +458,17 @@ footer i {
 
   h2 {
     font-size: 2rem;
+  }
+
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .logo {
+    font-size: 1.15rem;
+    line-height: 1.3;
   }
 
   .headshot-placeholder {

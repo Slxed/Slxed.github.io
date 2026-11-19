@@ -1,10 +1,52 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { formatPostDate, getPublishedPosts, postPath, publicSrc } from '../lib/posts';
 
 const posts = await getPublishedPosts();
+
+function publicFile(urlPath: string): string | undefined {
+  const rel = urlPath.replace(/^\//, '');
+  return existsSync(join(process.cwd(), 'public', rel)) ? `/${rel}` : undefined;
+}
+
+function projectShot(base: string): string | undefined {
+  for (const ext of ['png', 'jpg', 'jpeg', 'webp']) {
+    const found = publicFile(`/projects/${base}.${ext}`);
+    if (found) return found;
+  }
+}
+
+const headshot =
+  publicFile('/headshot.jpg') ??
+  publicFile('/headshot.jpeg') ??
+  publicFile('/headshot.png') ??
+  publicFile('/headshot.webp');
+
+const projects = [
+  {
+    title: 'Crypto Diversification Analysis',
+    image: projectShot('crypto-diversification'),
+    demo: 'https://slxed.github.io/crypto-diversification/',
+    source: 'https://github.com/Slxed/crypto-diversification',
+    body: 'Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin\'s correlation with S&P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p < 0.001). Showed the correlation was even higher during market stress such as COVID, the FTX collapse, and the 2022 rate hikes, when a diversifier is needed most. Built 4 interactive plotly charts (a two-panel time series, a heatmap, grouped bars, and a risk vs. correlation scatter plot) to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.',
+  },
+  {
+    title: 'Wisconsin Public School Spending',
+    image: projectShot('wi-school-spending'),
+    source: 'https://github.com/Slxed/wi-school-spending',
+    body: 'I looked at how much Wisconsin public school districts spend per student. I utilized SQL queries, Microsoft Excel, and Python scripts to fully clean, sort, and merge multiple datasets of 421 districts from the Department of Public Instruction\'s 2023–24 data. Then I joined the data to district boundaries in ArcGIS Pro and built a bivariate choropleth map of spending per student against graduation rate.',
+  },
+  {
+    title: 'AI-Assisted Querying of Cleaned Data',
+    image: projectShot('ai-data-cleaner'),
+    source: 'https://github.com/Slxed/ai-data-cleaner-WIP',
+    body: 'A Python pipeline that cleans a particular NY dataset. Tools: Python, pandas, NumPy, Matplotlib. Next step: send the cleaning log to an LLM for a data quality report, and turn plain-English questions into queries.',
+  },
+];
 ---
 
 <Layout>
@@ -23,18 +65,20 @@ const posts = await getPublishedPosts();
         Whether you are looking for trends within data, data warehousing and governance, or data engineering, I'm here to help you turn data into real, actionable insights. 
       </p>
       <div class="cta-container">
-        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://github.com/Slxed" class="social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/william-day-5b73112bb/" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:weday@wisc.edu" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="/William_Day_Resume.pdf" class="cta-button">Resume</a>
         <a href="#projects" class="cta-button secondary">View my work</a>
       </div>
     </div>
     <div class="hero-image">
-      <!-- Add your headshot here -->
       <div class="headshot-placeholder">
-        <!-- Replace with: <img src="your-headshot.jpg" alt="William Day"> -->
-        <i class="fa-solid fa-user"></i>
+        {headshot ? (
+          <img src={headshot} alt="William Day" />
+        ) : (
+          <span aria-hidden="true">WD</span>
+        )}
       </div>
     </div>
   </div>
@@ -48,19 +92,30 @@ const posts = await getPublishedPosts();
     </div>
     <div class="about-content">
       <div class="about-text">
-        <!-- Add your detailed bio here -->
-        <p>Info Paragraph 1</p>
-        <p>Info Paragraph 2</p>
+        <p>I'm a junior at UW–Madison studying Data Science and Cartography &amp; GIS. I expect to graduate in May 2028 with a B.S. in Data Science and a B.S. in Cartography &amp; GIS.</p>
+        <p>In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights. Most of the work was getting messy spreadsheets to agree, and honestly that's the part I like. In summer 2027 I'll be a Data Analytics Intern at Mercury Marine.</p>
 
-        <!-- Add your skills here -->
         <div class="skills">
           <h3>Skills</h3>
           <ul>
-            <li>R(Tidyverse, GGPlot2, Shiny)</li>
-            <li>SQL, Python(Pandas, Matplotlib, Beautiful Soup, Numpy)</li>
-            <li>GIS(ArcGIS Pro, GeoPandas, Spatial Joins)</li>
-            <li>Data Cleaning</li>
-            <li>Boot Strapping and Statistical Testing</li>
+            <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
+            <li>R (tidyverse, ggplot2, Shiny)</li>
+            <li>SQL</li>
+            <li>Excel</li>
+            <li>Jupyter</li>
+            <li>ArcGIS Pro</li>
+            <li>spatial joins</li>
+            <li>choropleth mapping</li>
+            <li>data classification</li>
+            <li>Adobe Illustrator</li>
+            <li>Git/GitHub</li>
+            <li>RStudio</li>
+            <li>regression analysis</li>
+            <li>technical documentation</li>
+            <li>data storytelling</li>
+            <li>data visualization</li>
+            <li>bootstrapping</li>
+            <li>data cleaning</li>
           </ul>
         </div>
       </div>
@@ -75,62 +130,29 @@ const posts = await getPublishedPosts();
       <p>A selection of my recent work</p>
     </div>
     <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="project-card">
-        <div class="project-image">
-          <!-- Replace with actual project screenshot -->
-          <div class="image-placeholder">
-            <!-- Replace with: <img src="project1.jpg" alt="Project 1"> -->
-            <i class="fa-solid fa-image"></i>
+      {projects.map((project) => (
+        <div class="project-card">
+          <div class="project-image">
+            {project.image ? (
+              <img src={project.image} alt="" />
+            ) : (
+              <div class="image-placeholder" aria-hidden="true"></div>
+            )}
+          </div>
+          <div class="project-info">
+            <h3>{project.title}</h3>
+            <p>{project.body}</p>
+            <div class="project-links">
+              {project.demo && (
+                <a href={project.demo} class="project-link"><i class="fa-solid fa-link"></i> Live Demo</a>
+              )}
+              {project.source && (
+                <a href={project.source} class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
+              )}
+            </div>
           </div>
         </div>
-        <div class="project-info">
-          <h3>Crypto Diversification Analysis</h3>
-          <p>Brief description of the project, technologies used, and your role in it.</p>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fa-solid fa-link"></i> Live Demo</a>
-            <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-image">
-          <!-- Replace with actual project screenshot -->
-          <div class="image-placeholder">
-            <!-- Replace with: <img src="project2.jpg" alt="Project 2"> -->
-            <i class="fa-solid fa-image"></i>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Wisconsin Public School Spending</h3>
-          <p>Brief description of the project, technologies used, and your role in it.</p>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fa-solid fa-link"></i> Live Demo</a>
-            <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="project-card">
-        <div class="project-image">
-          <!-- Replace with actual project screenshot -->
-          <div class="image-placeholder">
-            <!-- Replace with: <img src="project3.jpg" alt="Project 3"> -->
-            <i class="fa-solid fa-image"></i>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>AI-Assisted Querying of Cleaned Data</h3>
-          <p>Brief description of the project, technologies used, and your role in it.</p>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fa-solid fa-link"></i> Live Demo</a>
-            <a href="#" class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

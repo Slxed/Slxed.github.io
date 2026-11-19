@@ -370,6 +370,37 @@ section {
   font-size: 0.95rem;
 }
 
+.used {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.used div {
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.used dt {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.used-meta {
+  margin: 0.15rem 0 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+
+.used dd:last-child {
+  margin: 0;
+  max-width: 42rem;
+}
+
 .coursework {
   display: flex;
   flex-direction: column;
@@ -581,6 +612,16 @@ footer p {
 
 footer i {
   color: var(--color-accent-2);
+}
+
+.skills-page {
+  padding: 2.4rem 0 3rem;
+}
+
+.skills-page h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 1.5rem;
+  color: var(--color-primary);
 }
 
 .project-page {

@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Skills & Coursework">
+  <Header />
+  <article class="skills-page">
+    <div class="container">
+    <h1>Skills &amp; Coursework</h1>
+    <section id="skills" class="about">
+      <div class="skills">
+        <h3>Skills</h3>
+        <div class="skill-group">
+          <h4>Programming &amp; Data</h4>
+          <ul>
+            <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
+            <li>R (tidyverse, ggplot2, Shiny)</li>
+            <li>SQL</li>
+            <li>Excel</li>
+            <li>Jupyter</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>GIS &amp; Cartography</h4>
+          <ul>
+            <li>ArcGIS Pro</li>
+            <li>spatial joins</li>
+            <li>choropleth mapping</li>
+            <li>data classification</li>
+            <li>Adobe Illustrator</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <ul>
+            <li>Git/GitHub</li>
+            <li>RStudio</li>
+            <li>regression analysis</li>
+            <li>technical documentation</li>
+            <li>data storytelling</li>
+            <li>data visualization</li>
+            <li>bootstrapping</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="used" class="used-section">
+      <div class="section-header">
+        <h2>Where I've used them</h2>
+      </div>
+      <dl class="used">
+        <div>
+          <dt>The Moth: StorySLAM – Wisconsin Humanities</dt>
+          <dd class="used-meta">Student Data Intern · February 2026 – May 2026</dd>
+          <dd>Wrote Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records. Queried, analyzed, and visualized ticket transaction records and sales data, generating reports on attendance trends and revenue metrics across events with up to 250 attendees; recommendations informed ticket pricing.</dd>
+        </div>
+        <div>
+          <dt>UW–Madison Division of Information Technology (DoIT)</dt>
+          <dd class="used-meta">Help Desk Agent · July 2026 – Present</dd>
+          <dd>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush. Document troubleshooting steps and coach students and staff on cybersecurity basics like phishing and MFA.</dd>
+        </div>
+        <div>
+          <dt>Evansville Community School District</dt>
+          <dd class="used-meta">IT Apprentice · May 2023 – August 2024</dd>
+          <dd>Resolved 400+ hardware and software tickets for 100+ staff; maintained spreadsheets tracking 1,000+ device repairs.</dd>
+        </div>
+        <div>
+          <dt>My Projects</dt>
+          <dd class="used-meta">Wisconsin Public School Spending Analysis</dd>
+          <dd>Python, ArcGIS, SQL, Adobe Illustrator, Excel. Matched it to district boundaries in ArcGIS Pro. Built a bivariate choropleth map.</dd>
+        </div>
+        <div>
+          <dt>My Projects</dt>
+          <dd class="used-meta">Crypto Diversification Analysis</dd>
+          <dd>R (tidyverse, tidyquant, plotly), R Markdown. Rolling correlations; bootstrap.</dd>
+        </div>
+        <div>
+          <dt>Mercury Marine</dt>
+          <dd class="used-meta">Summer 2027, upcoming</dd>
+          <dd>Data Analytics Intern</dd>
+        </div>
+      </dl>
+    </section>
+    <section id="coursework" class="coursework-section">
+      <div class="section-header">
+        <h2>Coursework</h2>
+      </div>
+      <dl class="coursework">
+        <div>
+          <dt>Data Science &amp; Statistics</dt>
+          <dd>Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Probability &amp; Mathematical Statistics I (in progress)</dd>
+        </div>
+        <div>
+          <dt>GIS &amp; Cartography</dt>
+          <dd>Intro to Cartography, Intro to Geographic Information Systems (in progress)</dd>
+        </div>
+        <div>
+          <dt>Math, CS &amp; Engineering</dt>
+          <dd>Calculus I–III, Linear Algebra, Programming I, General Physics, Intro to Electrical Engineering, Intro to Computer Engineering</dd>
+        </div>
+        <div>
+          <dt>Spring 2027</dt>
+          <dd>Machine Learning, Data Science with R, Intro to AI &amp; Data Ethics</dd>
+        </div>
+      </dl>
+    </section>
+    </div>
+  </article>
+  <Footer />
+</Layout>

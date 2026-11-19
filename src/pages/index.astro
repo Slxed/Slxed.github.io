@@ -4,8 +4,8 @@ import { join } from 'node:path';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { formatPostDate, getPublishedPosts, postPath, publicSrc } from '../lib/posts';
-import { currently } from '../site';
+import { formatPostDate, getPublishedPosts, homeHref, postPath, publicSrc } from '../lib/posts';
+import { latestUpdate } from '../site';
 
 const posts = await getPublishedPosts();
 
@@ -64,12 +64,11 @@ const projects = [
       <p class="subtitle">
         I'm a junior at UW–Madison studying Data Science and Cartography &amp; GIS.
       </p>
-      <p class="currently">{currently}</p>
+      <p class="currently">{latestUpdate}</p>
       <p class="description">
         In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights.
       </p>
       <p class="hero-links">
-        <a href="/William_Day_Resume.pdf">Resume</a>
         <a href="https://github.com/Slxed">github.com/Slxed</a>
         <a href="https://www.linkedin.com/in/william-day-5b73112bb/">LinkedIn</a>
         <a href="mailto:weday@wisc.edu">weday@wisc.edu</a>
@@ -97,70 +96,9 @@ const projects = [
     <div class="about-content">
       <div class="about-text">
         <p>I'm a junior at the University of Wisconsin–Madison, graduating in May 2028 with a B.S. in Data Science and a B.S. in Cartography &amp; GIS. I have hands-on experience working with tabular and spatial data in both professional and academic settings. I focus on data analysis and finding the trends underneath a dataset, and I'm always looking to learn new tools along the way, mainly machine learning and web maps as of right now.</p>
-
-        <div class="skills">
-          <h3>Skills</h3>
-          <div class="skill-group">
-            <h4>Programming &amp; Data</h4>
-            <ul>
-              <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
-              <li>R (tidyverse, ggplot2, Shiny)</li>
-              <li>SQL</li>
-              <li>Excel</li>
-              <li>Jupyter</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h4>GIS &amp; Cartography</h4>
-            <ul>
-              <li>ArcGIS Pro</li>
-              <li>spatial joins</li>
-              <li>choropleth mapping</li>
-              <li>data classification</li>
-              <li>Adobe Illustrator</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h4>Tools</h4>
-            <ul>
-              <li>Git/GitHub</li>
-              <li>RStudio</li>
-              <li>regression analysis</li>
-              <li>technical documentation</li>
-              <li>data storytelling</li>
-              <li>data visualization</li>
-              <li>bootstrapping</li>
-            </ul>
-          </div>
-        </div>
+        <p><a class="read-more" href={homeHref('skills')}>Skills &amp; coursework →</a></p>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="coursework" class="coursework-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Coursework</h2>
-    </div>
-    <dl class="coursework">
-      <div>
-        <dt>Data Science &amp; Statistics</dt>
-        <dd>Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Probability &amp; Mathematical Statistics I (in progress)</dd>
-      </div>
-      <div>
-        <dt>GIS &amp; Cartography</dt>
-        <dd>Intro to Cartography, Intro to Geographic Information Systems (in progress)</dd>
-      </div>
-      <div>
-        <dt>Math, CS &amp; Engineering</dt>
-        <dd>Calculus I–III, Linear Algebra, Programming I, General Physics, Intro to Electrical Engineering, Intro to Computer Engineering</dd>
-      </div>
-      <div>
-        <dt>Spring 2027</dt>
-        <dd>Machine Learning, Data Science with R, Intro to AI &amp; Data Ethics</dd>
-      </div>
-    </dl>
   </div>
 </section>
 

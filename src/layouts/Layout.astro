@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+import { goatcounterCode } from '../site';
+
+const goatcounter = goatcounterCode.trim();
+const goatcounterReady = /^[a-z0-9-]+$/i.test(goatcounter);
 
 interface Props {
   title?: string;
@@ -71,5 +75,13 @@ const image = new URL('/og.png', Astro.site);
 			<path d="M-40 700C200 640 360 760 580 710s300-90 460 20 200 50 280 20" />
 		</svg>
 		<slot />
+		{goatcounterReady && (
+			<script
+				is:inline
+				data-goatcounter={`https://${goatcounter}.goatcounter.com/count`}
+				async
+				src="//gc.zgo.at/count.js"
+			></script>
+		)}
 	</body>
 </html>

@@ -219,6 +219,7 @@ nav a {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border: 3px solid color-mix(in srgb, var(--color-primary) 40%, white);
   font-family: var(--font-secondary);
   font-size: 4.5rem;
   font-weight: 700;
@@ -262,7 +263,21 @@ section {
 }
 
 .skills {
+  margin-top: var(--spacing-lg);
+}
+
+.skill-group {
   margin-top: var(--spacing-md);
+}
+
+.skill-group h4 {
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xs);
 }
 
 .skills ul {
@@ -288,6 +303,8 @@ section {
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-secondary);
   border-radius: var(--border-radius-md);
   overflow: hidden;
@@ -316,18 +333,38 @@ section {
 .image-placeholder {
   width: 100%;
   height: 100%;
-  background:
-    linear-gradient(165deg, var(--color-secondary) 0%, color-mix(in srgb, var(--color-primary) 28%, white) 100%);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-secondary));
+  background-image: repeating-linear-gradient(
+    -18deg,
+    transparent,
+    transparent 11px,
+    color-mix(in srgb, var(--color-primary) 22%, transparent) 11px,
+    color-mix(in srgb, var(--color-primary) 22%, transparent) 12px
+  );
 }
 
 .project-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: var(--spacing-md);
+}
+
+.project-info h3 {
+  font-size: 1.35rem;
+}
+
+.project-info p {
+  font-size: 0.98rem;
+  line-height: 1.55;
 }
 
 .project-links {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
 }
 
 .project-link {

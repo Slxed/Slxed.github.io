@@ -32,7 +32,7 @@ const projects = [
     image: projectShot('crypto-diversification'),
     demo: 'https://slxed.github.io/crypto-diversification/',
     source: 'https://github.com/Slxed/crypto-diversification',
-    body: 'Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R with rolling correlations; found Bitcoin\'s correlation with S&P 500 rose from near zero before 2020 to about 0.39 after (Fisher z-test, bootstrap; p < 0.001). Showed the correlation was even higher during market stress such as COVID, the FTX collapse, and the 2022 rate hikes, when a diversifier is needed most. Built 4 interactive plotly charts (a two-panel time series, a heatmap, grouped bars, and a risk vs. correlation scatter plot) to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.',
+    body: 'In a team project for STAT 436 (Statistical Data Visualization), we analyzed trends in the financial market pertaining to traditional and cryptocurrency investments. Analyzed daily returns for 8 assets (Bitcoin, Ethereum, S&P 500, gold, bonds and others) in R (tidyverse, tidyquant, plotly) with rolling correlations; found Bitcoin\'s correlation with S&P 500 rose from near zero before 2020 to about 0.39 after. Built 4 interactive plotly charts to show that Bitcoin stopped being a diversifier after 2020, in a form readers without a finance background can follow.',
   },
   {
     title: 'Wisconsin Public School Spending',
@@ -57,12 +57,10 @@ const projects = [
     <div class="hero-content">
       <h1>William Day </h1>
       <p class="subtitle">
-        <!-- Add your title/role here -->
-        I'm a Data Science student focusing on analytics and data governance, with a secondary focus on GIS.
+        I'm a junior at UW–Madison studying Data Science and Cartography &amp; GIS.
       </p>
       <p class="description">
-        <!-- Add your brief bio here -->
-        Whether you are looking for trends within data, data warehousing and governance, or data engineering, I'm here to help you turn data into real, actionable insights. 
+        In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights.
       </p>
       <div class="cta-container">
         <a href="https://github.com/Slxed" class="social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -92,31 +90,44 @@ const projects = [
     </div>
     <div class="about-content">
       <div class="about-text">
-        <p>I'm a junior at UW–Madison studying Data Science and Cartography &amp; GIS. I expect to graduate in May 2028 with a B.S. in Data Science and a B.S. in Cartography &amp; GIS.</p>
-        <p>In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights. Most of the work was getting messy spreadsheets to agree, and honestly that's the part I like. In summer 2027 I'll be a Data Analytics Intern at Mercury Marine.</p>
+        <p>I expect to graduate in May 2028 with a B.S. in Data Science and a B.S. in Cartography &amp; GIS. Coursework: Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Cartography, Intro to GIS, Linear Algebra.</p>
+        <p>I have hands-on experience working with data in both professional and academic settings and finding the reason behind its trends. Most of the work was getting messy spreadsheets to agree, and honestly that's the part I like. In summer 2027 I'll be a Data Analytics Intern at Mercury Marine.</p>
 
         <div class="skills">
           <h3>Skills</h3>
-          <ul>
-            <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
-            <li>R (tidyverse, ggplot2, Shiny)</li>
-            <li>SQL</li>
-            <li>Excel</li>
-            <li>Jupyter</li>
-            <li>ArcGIS Pro</li>
-            <li>spatial joins</li>
-            <li>choropleth mapping</li>
-            <li>data classification</li>
-            <li>Adobe Illustrator</li>
-            <li>Git/GitHub</li>
-            <li>RStudio</li>
-            <li>regression analysis</li>
-            <li>technical documentation</li>
-            <li>data storytelling</li>
-            <li>data visualization</li>
-            <li>bootstrapping</li>
-            <li>data cleaning</li>
-          </ul>
+          <div class="skill-group">
+            <h4>Programming &amp; Data</h4>
+            <ul>
+              <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
+              <li>R (tidyverse, ggplot2, Shiny)</li>
+              <li>SQL</li>
+              <li>Excel</li>
+              <li>Jupyter</li>
+              <li>Data cleaning</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>GIS &amp; Cartography</h4>
+            <ul>
+              <li>ArcGIS Pro</li>
+              <li>spatial joins</li>
+              <li>choropleth mapping</li>
+              <li>data classification</li>
+              <li>Adobe Illustrator</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <ul>
+              <li>Git/GitHub</li>
+              <li>RStudio</li>
+              <li>regression analysis</li>
+              <li>technical documentation</li>
+              <li>data storytelling</li>
+              <li>data visualization</li>
+              <li>bootstrapping</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

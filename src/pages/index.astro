@@ -30,7 +30,9 @@ const headshot =
 const projects = [
   {
     title: 'Wisconsin Public School Spending Analysis',
-    image: projectShot('wi-school-spending'),
+    image:
+      projectShot('wi-school-spending') ??
+      'https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png',
     page: '/projects/wi-school-spending',
     source: 'https://github.com/Slxed/wi-school-spending',
     body: 'Cleaned and joined Wisconsin DPI spending and graduation data (2023–24) for 421 school districts using Python and SQL, then matched it to district boundaries in ArcGIS Pro. Built a bivariate choropleth map showing that higher spending didn\'t consistently line up with higher graduation rates: districts averaged $18,865 per student and a 68.8% graduation rate, but Lac du Flambeau spent $39,708 per student and graduated only 57%, while Merton spent $12,624 and graduated 94%. Designed the final layout in ArcGIS Pro and Illustrator using an Albers equal-area projection, with a clear visual hierarchy and callouts for outlier districts to tell the story without lengthy explanation.',
@@ -66,13 +68,13 @@ const projects = [
       <p class="description">
         In both professional and academic contexts I have hands-on experience working with data and turning it into actionable insights.
       </p>
-      <div class="cta-container">
-        <a href="https://github.com/Slxed" class="social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/william-day-5b73112bb/" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="mailto:weday@wisc.edu" class="social-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="/William_Day_Resume.pdf" class="cta-button">Resume</a>
-        <a href="#projects" class="cta-button secondary">View my work</a>
-      </div>
+      <p class="hero-links">
+        <a href="/William_Day_Resume.pdf">Resume</a>
+        <a href="https://github.com/Slxed">github.com/Slxed</a>
+        <a href="https://www.linkedin.com/in/william-day-5b73112bb/">LinkedIn</a>
+        <a href="mailto:weday@wisc.edu">weday@wisc.edu</a>
+        <a href="#projects">View my work</a>
+      </p>
     </div>
     <div class="hero-image">
       <div class="headshot-placeholder">
@@ -168,31 +170,29 @@ const projects = [
       <h2>My Projects</h2>
       <p>A selection of my recent work</p>
     </div>
-    <div class="projects-grid">
+    <div class="project-index">
       {projects.map((project) => (
-        <div class="project-card">
-          <div class="project-image">
-            {project.image ? (
+        <article class="project-row">
+          {project.image && (
+            <a class="project-thumb" href={project.page || project.source} tabindex="-1" aria-hidden="true">
               <img src={project.image} alt="" />
-            ) : (
-              <div class="image-placeholder" aria-hidden="true"></div>
-            )}
-          </div>
+            </a>
+          )}
           <div class="project-info">
             <h3>
               {project.page ? <a href={project.page}>{project.title}</a> : project.title}
             </h3>
-            <p>{project.body}</p>
-            <div class="project-links">
+            <p class="project-line">{project.body}</p>
+            <p class="project-links">
               {project.demo && (
-                <a href={project.demo} class="project-link"><i class="fa-solid fa-link"></i> Live Demo</a>
+                <a href={project.demo}>Live Demo</a>
               )}
               {project.source && (
-                <a href={project.source} class="project-link"><i class="fa-brands fa-github"></i> Source Code</a>
+                <a href={project.source}>Source Code</a>
               )}
-            </div>
+            </p>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -215,7 +215,7 @@ const projects = [
             </div>
             <h3>{post.data.title}</h3>
             <p>{post.data.excerpt}</p>
-            <a href={postPath(post.id)} class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            <a href={postPath(post.id)} class="read-more">Read More</a>
           </div>
         ))}
       </div>

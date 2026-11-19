@@ -23,7 +23,8 @@ const image = new URL('/og.png', Astro.site);
 		<script is:inline>
 			(function () {
 				try {
-					var requested = new URLSearchParams(location.search).get('theme');
+					var params = new URLSearchParams(location.search);
+					var requested = params.get('theme');
 					var stored = localStorage.getItem('theme');
 					var theme =
 						requested === 'dark' || requested === 'light'
@@ -34,6 +35,10 @@ const image = new URL('/og.png', Astro.site);
 									? 'dark'
 									: 'light';
 					document.documentElement.setAttribute('data-theme', theme);
+					var design = params.get('design');
+					if (design === 'field' || design === 'plate') {
+						document.documentElement.setAttribute('data-design', design);
+					}
 				} catch (e) {}
 			})();
 		</script>
@@ -58,6 +63,13 @@ const image = new URL('/og.png', Astro.site);
 		<title>{pageTitle}</title>
 	</head>
 	<body>
+		<svg class="topo" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+			<path d="M-40 90C160 40 280 170 480 120s300-90 520 10 280 40 360-20" />
+			<path d="M-40 150C180 110 300 230 500 180s320-70 540 20 260 30 340-10" />
+			<path d="M-40 420C140 360 300 500 520 450s340-80 500 30 220 60 300 10" />
+			<path d="M-40 490C160 440 320 560 540 510s320-60 480 40 240 40 320 0" />
+			<path d="M-40 700C200 640 360 760 580 710s300-90 460 20 200 50 280 20" />
+		</svg>
 		<slot />
 	</body>
 </html>

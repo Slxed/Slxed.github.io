@@ -76,6 +76,15 @@ The file must be GeoJSON in longitude/latitude (EPSG:4326). Each feature needs:
 
 Hover text is the district name, dollars per student, and graduation rate. The color grid is spending left to right and graduation rate bottom to top, split into three groups from the file itself. Official Wisconsin school district boundaries (Wisconsin DPI or LTSB open data) can be joined to a table that already has these fields. Do not fill in spending or graduation rates that are not in that table. The resume figures (421 districts, 2023–24, $18,865 and 68.8%, Lac du Flambeau $39,708 and 57%, Merton $12,624 and 94%) stay in the text even before the file is added.
 
+## Project drafts
+
+Two drafts are already in `src/content/blog/`:
+
+- `how-i-made-wi-school-spending.md`
+- `how-i-made-crypto-diversification.md`
+
+Both have `draft: true`, so a production build leaves them off the site. `npm run dev` shows them. Replace the comment, write the post, set `draft` to `false`, and push.
+
 ## Crypto report
 
 `/projects/crypto-diversification` embeds the existing report at https://slxed.github.io/crypto-diversification/ in a frame. That page is the rendered `docs/index.html` from github.com/Slxed/crypto-diversification, including the plotly charts. The charts are not copied into this repo and are not redrawn here. If that URL stops resolving, the Live Demo link on the home card points at the same place.

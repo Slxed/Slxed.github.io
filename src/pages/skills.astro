@@ -2,110 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { homeHref } from '../lib/posts';
 ---
 
-<Layout title="Skills & Coursework">
+<Layout title="Skills">
   <Header />
   <article class="skills-page">
     <div class="container">
-    <h1>Skills &amp; Coursework</h1>
-    <section id="skills" class="about">
-      <div class="skills">
-        <h3>Skills</h3>
-        <div class="skill-group">
-          <h4>Programming &amp; Data</h4>
-          <ul>
-            <li>Python (pandas, NumPy, Matplotlib, Beautiful Soup)</li>
-            <li>R (tidyverse, ggplot2, Shiny)</li>
-            <li>SQL</li>
-            <li>Excel</li>
-            <li>Jupyter</li>
-          </ul>
+      <h1>Skills</h1>
+
+      <section id="programming" class="skill-depth">
+        <h2>Programming &amp; Data</h2>
+        <p>Python (pandas, NumPy, Matplotlib, Beautiful Soup), R (tidyverse, ggplot2, Shiny), SQL, Excel, Jupyter.</p>
+        <p>At <a href={homeHref('experience#moth')}>The Moth</a>, a first pass in R (tidyverse, ggplot2) caught NaNs and showed trends. A later pandas script, about 20 lines, caught what R missed, dropped duplicates and missing values, and wrote clean files. It was self-taught with research and generative AI.</p>
+        <p>I use SQL for SELECT and GROUP BY, from GEOG 377, plus some queries on the Moth data. I learned Shiny in STAT 436. I'm currently learning machine learning in STAT 451 (Spring 2027).</p>
+      </section>
+
+      <section id="gis" class="skill-depth">
+        <h2>GIS &amp; Cartography</h2>
+        <p>ArcGIS Pro, spatial joins, choropleth mapping, data classification, Adobe Illustrator.</p>
+        <p>For <a href={homeHref('experience#schools')}>Wisconsin Public School Spending Analysis</a>, spatial joins in ArcGIS Pro matched spending and graduation data to district boundaries, and a bivariate choropleth compared spending per student with graduation rate. The final layout was designed in ArcGIS Pro and Illustrator.</p>
+      </section>
+
+      <section id="tools" class="skill-depth">
+        <h2>Tools &amp; Communication</h2>
+        <p>Git/GitHub, RStudio, regression analysis, technical documentation, data storytelling, data visualization, bootstrapping.</p>
+        <p>At <a href={homeHref('experience#doit')}>UW–Madison DoIT</a> I triage tickets in WiscIT, document troubleshooting steps, and coach students and staff on phishing and MFA. Moth reports give each chart one question, a plain-words takeaway, and a recommendation. The <a href={homeHref('experience#crypto')}>crypto project</a> used a Fisher z-test and a bootstrap.</p>
+      </section>
+
+      <section id="coursework" class="coursework-section">
+        <div class="section-header">
+          <h2>Coursework</h2>
         </div>
-        <div class="skill-group">
-          <h4>GIS &amp; Cartography</h4>
-          <ul>
-            <li>ArcGIS Pro</li>
-            <li>spatial joins</li>
-            <li>choropleth mapping</li>
-            <li>data classification</li>
-            <li>Adobe Illustrator</li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <h4>Tools</h4>
-          <ul>
-            <li>Git/GitHub</li>
-            <li>RStudio</li>
-            <li>regression analysis</li>
-            <li>technical documentation</li>
-            <li>data storytelling</li>
-            <li>data visualization</li>
-            <li>bootstrapping</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section id="used" class="used-section">
-      <div class="section-header">
-        <h2>Skills in Practice</h2>
-      </div>
-      <dl class="used">
-        <div>
-          <dt>The Moth: StorySLAM – Wisconsin Humanities</dt>
-          <dd class="used-meta">Student Data Intern · February 2026 – May 2026</dd>
-          <dd>R (tidyverse, ggplot2) for a first cleaning and trend pass, then Python (pandas) scripts to merge ticketing data from multiple sources, removing 30+ duplicate and incomplete records. Queried, analyzed, and visualized ticket transaction records and sales data, generating reports on attendance trends and revenue metrics across events with up to 250 attendees; recommendations informed ticket pricing.</dd>
-        </div>
-        <div>
-          <dt>UW–Madison Division of Information Technology (DoIT)</dt>
-          <dd class="used-meta">Help Desk Agent · July 2026 – Present</dd>
-          <dd>Triage and resolve 10–20 support tickets per shift in WiscIT, including the start-of-semester rush. Document troubleshooting steps and coach students and staff on cybersecurity basics like phishing and MFA.</dd>
-        </div>
-        <div>
-          <dt>Evansville Community School District</dt>
-          <dd class="used-meta">IT Apprentice · May 2023 – August 2024</dd>
-          <dd>Resolved 400+ hardware and software tickets for 100+ staff; maintained spreadsheets tracking 1,000+ device repairs.</dd>
-        </div>
-        <div>
-          <dt>My Projects</dt>
-          <dd class="used-meta">Wisconsin Public School Spending Analysis</dd>
-          <dd>Python, ArcGIS, SQL, Adobe Illustrator, Excel. Matched it to district boundaries in ArcGIS Pro. Built a bivariate choropleth map.</dd>
-        </div>
-        <div>
-          <dt>My Projects</dt>
-          <dd class="used-meta">Crypto Diversification Analysis</dd>
-          <dd>R (tidyverse, tidyquant, plotly), R Markdown. Rolling correlations; bootstrap.</dd>
-        </div>
-        <div>
-          <dt>Mercury Marine</dt>
-          <dd class="used-meta">Summer 2027, upcoming</dd>
-          <dd>Data Analytics Intern</dd>
-        </div>
-      </dl>
-    </section>
-    <section id="coursework" class="coursework-section">
-      <div class="section-header">
-        <h2>Coursework</h2>
-      </div>
-      <dl class="coursework">
-        <div>
-          <dt>Data Science &amp; Statistics</dt>
-          <dd>Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Probability &amp; Mathematical Statistics I (in progress)</dd>
-        </div>
-        <div>
-          <dt>GIS &amp; Cartography</dt>
-          <dd>Intro to Cartography, Intro to Geographic Information Systems (in progress)</dd>
-        </div>
-        <div>
-          <dt>Math, CS &amp; Engineering</dt>
-          <dd>Calculus I–III, Linear Algebra, Programming I, General Physics, Intro to Electrical Engineering, Intro to Computer Engineering</dd>
-        </div>
-        <div>
-          <dt>Spring 2027</dt>
-          <dd>Machine Learning, Data Science with R, Intro to AI &amp; Data Ethics</dd>
-        </div>
-      </dl>
-    </section>
+        <dl class="coursework">
+          <div>
+            <dt>Data Science &amp; Statistics</dt>
+            <dd>Data Science Modeling I &amp; II, Data Science Programming I &amp; II, Statistical Data Visualization, Intro to Probability &amp; Mathematical Statistics I (in progress)</dd>
+          </div>
+          <div>
+            <dt>GIS &amp; Cartography</dt>
+            <dd>Intro to Cartography, Intro to Geographic Information Systems (in progress)</dd>
+          </div>
+          <div>
+            <dt>Math, CS &amp; Engineering</dt>
+            <dd>Calculus I–III, Linear Algebra, Programming I, General Physics, Intro to Electrical Engineering, Intro to Computer Engineering</dd>
+          </div>
+          <div>
+            <dt>Spring 2027</dt>
+            <dd>Machine Learning, Data Science with R, Intro to AI &amp; Data Ethics</dd>
+          </div>
+        </dl>
+      </section>
     </div>
   </article>
   <Footer />

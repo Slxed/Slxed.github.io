@@ -1,0 +1,44 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { formatPostDate, getPublishedPosts, homeHref, publicSrc } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+  <Header />
+  <article class="blog-post">
+    <div class="blog-header">
+      <h1>{post.data.title}</h1>
+      <time datetime={post.data.date.toISOString()}>
+        {formatPostDate(post.data.date, 'long')}
+        {post.data.draft && <span class="draft-badge">Draft</span>}
+      </time>
+    </div>
+    {post.data.image && <img src={publicSrc(post.data.image)} alt="" />}
+    <div class="blog-content">
+      <Content />
+    </div>
+    <a href={homeHref('#blog')} class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Back to all posts
+    </a>
+  </article>
+  <Footer />
+</Layout>

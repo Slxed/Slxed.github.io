@@ -42,7 +42,9 @@ Project screenshots are optional. Drop a file in `public/projects/` and the card
 
 `.jpg`, `.jpeg`, and `.webp` work with the same names. The Wisconsin map in `Slxed/wi-school-spending` (`map/wi_spending_vs_graduation.png`) is one you already have.
 
-Accent color is two values at the top of `src/styles/global.css`: `--color-primary` and `--color-primary-dark`. Comment the active line and uncomment deep blue, map teal, or Badger red.
+Accent color is `--color-primary` and `--color-primary-dark` in `src/styles/global.css`. There is a light block and a dark block. Comment the active line and uncomment deep blue, map teal, or Badger red in both blocks, or the night colors will not match.
+
+The moon button in the header switches light and dark. The choice is saved in the browser. With no saved choice, the site follows the system setting.
 
 ## Currently line
 

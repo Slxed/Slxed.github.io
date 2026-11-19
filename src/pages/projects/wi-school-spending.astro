@@ -24,7 +24,7 @@ const description =
       src="https://raw.githubusercontent.com/Slxed/wi-school-spending/main/map/wi_spending_vs_graduation.png"
       alt="Map of Wisconsin school districts comparing spending per student and graduation rate"
     />
-    <div id="district-map" class="district-map" role="region" aria-label="Wisconsin school districts"></div>
+    <div id="district-map" class="district-map" role="region" aria-label="Wisconsin school districts" hidden></div>
     <p id="map-note" class="map-note"></p>
     <div id="bivariate-legend" class="bivariate-legend" hidden></div>
   </article>
@@ -80,6 +80,7 @@ const description =
       return;
     }
 
+    mapEl.hidden = false;
     const map = L.map(mapEl, { scrollWheelZoom: false });
     const layer = L.geoJSON(collection, {
       style(feature) {

@@ -1,0 +1,20 @@
+<footer>
+  <div class="container">
+    <p>
+      <a href="mailto:weday@wisc.edu">weday@wisc.edu</a>
+      ·
+      <a href="https://github.com/Slxed">github.com/Slxed</a>
+      ·
+      <a href="https://www.linkedin.com/in/william-day-5b73112bb/">LinkedIn</a>
+    </p>
+    <p>&copy; <span id="current-year">2023</span> William Day. All rights reserved.</p>
+    <p>Made with <i class="fa-solid fa-heart"></i> and 🧀</p>
+  </div>
+</footer>
+
+<script>
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = String(new Date().getFullYear());
+  }
+</script>

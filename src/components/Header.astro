@@ -1,0 +1,22 @@
+---
+import { getPublishedPosts, homeHref } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+const showBlog = posts.length > 0;
+---
+
+<header>
+  <div class="container">
+    <a href={homeHref()} class="logo">https://slxed.github.io/</a>
+    <nav>
+      <ul>
+        <li><a href={homeHref('#about')}>About</a></li>
+        <li><a href={homeHref('#experience')}>Experience</a></li>
+        <li><a href={homeHref('#projects')}>Projects</a></li>
+        {showBlog && (
+          <li><a href={homeHref('#blog')}>Blog</a></li>
+        )}
+      </ul>
+    </nav>
+  </div>
+</header>
